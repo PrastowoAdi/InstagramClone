@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "minifaker": "^1.34.1",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0"
@@ -21,5 +22,11 @@
     "eslint-config-next": "12.1.6",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
+  },
+  "exports": {
+    "./locales/en": { 
+      "import": "./dist/esm/locales/en/index.js", 
+      "require": "./dist/cjs/locales/en/index.js" 
+    }
   }
 }
