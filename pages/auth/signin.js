@@ -13,7 +13,7 @@ export default function signin({providers}) {
                     <div key={provider.name} className='flex flex-col items-center'>
                         <img className='w-32 object-cover' src='/img/sign2_img.png' alt='img-sign'/>
                         <p className="text-sm italic my-10 text-center">This app is created for more reason</p>
-                        <button onClick={() => signIn(provider.id, {callback:"/"})} className='bg-rose-500 rounded-lg p-3 text-white hover:bg-rose-600'>Sign in with {provider.name}</button>
+                        <button onClick={() => signIn(provider.id, {callbackUrl:"/"})} className='bg-rose-500 rounded-lg p-3 text-white hover:bg-rose-600'>Sign in with {provider.name}</button>
                     </div>
                 ))}
             </div>
