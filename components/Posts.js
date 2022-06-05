@@ -1,35 +1,31 @@
-import React from 'react'
+
 import Post from './Post'
+import {useState, useEffect} from 'react'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { db } from '../firebase'
 
 export default function Posts() {
-    const posts = [
-        {
-            id: "1",
-            username: "prastowoadi",
-            userImg: "/img/avatar.png",
-            img: "/img/bg1.jpg",
-            caption: "Thanks for support"
-        },
-        {
-            id: "2",
-            username: "prastowadin",
-            userImg: "/img/avatar.png",
-            img: "/img/bg2.jpg",
-            caption: "Thanks for everything"
-        }
-    ]
-  return (
-    <div>
-        {posts.map(post =>(
-            <Post
-                key={post.id}
-                id={post.id}
-                username={post.username}
-                userImg={post.userImg}
-                img={post.img}
-                caption={post.caption}
-            />
-        ))}
-    </div>
-  )
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        const unsubscribe = onSnapshot(
+            query(collection(db, 'posts'),orderBy(("timestamp"),"desc")), (snapshot) => {
+                setPosts(snapshot.docs)
+            }
+        )
+        return unsubscribe;
+    },[])
+    return (
+        <div>
+            {posts.map(post =>(
+                <Post
+                    key={post.id}
+                    id={post.id}
+                    username={post.data().username}
+                    userImg={post.data().profileImg}
+                    img={post.data().image}
+                    caption={post.data().caption}
+                />
+            ))}
+        </div>
+    )
 }
