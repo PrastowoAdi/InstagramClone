@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import Post from './Post'
 import {useState, useEffect} from 'react'
@@ -13,7 +14,7 @@ export default function Posts() {
             }
         )
         return unsubscribe;
-    },[])
+    },[db])
     return (
         <div>
             {posts.map(post =>(
